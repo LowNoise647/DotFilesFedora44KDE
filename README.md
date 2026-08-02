@@ -34,17 +34,17 @@ instalación limpia con un solo comando.
 
 ```bash
 # 1) Descargar y ejecutar el bootstrap (instala git si falta, clona y ejecuta install.sh)
-bash <(curl -fsSL https://raw.githubusercontent.com/<TU_USUARIO>/dotfiles/main/bootstrap.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/LowNoise647/DotFilesFedora44KDE/main/bootstrap.sh)
 
 # o bien, con tu propio repositorio
-DOTFILES_REPO="git@github.com:<TU_USUARIO>/dotfiles.git" \
-  bash <(curl -fsSL https://raw.githubusercontent.com/<TU_USUARIO>/dotfiles/main/bootstrap.sh)
+DOTFILES_REPO="git@github.com:LowNoise647/DotFilesFedora44KDE.git" \
+  bash <(curl -fsSL https://raw.githubusercontent.com/LowNoise647/DotFilesFedora44KDE/main/bootstrap.sh)
 ```
 
 ### Desde el repositorio clonado
 
 ```bash
-git clone <URL_del_repo> ~/dotfiles
+git clone https://github.com/LowNoise647/DotFilesFedora44KDE.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```

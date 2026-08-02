@@ -33,10 +33,15 @@ apply_kde_settings() {
         plasma-apply-wallpaperimage "${wall}" || warn "No se pudo aplicar el wallpaper del escritorio."
     fi
 
+    if is_installed plasma-apply-cursortheme; then
+        plasma-apply-cursortheme "${CURSOR_THEME}" || warn "No se pudo aplicar el cursor '${CURSOR_THEME}'."
+    fi
+
     # Iconos, cursores y decoracion ya quedaron escritos por config.sh en
     # kdeglobals/kcminputrc/kwinrc; se refuerzan aqui por si acaso.
     if is_installed kwriteconfig6; then
         kwriteconfig6 --file kdeglobals --group Icons --key Theme "${ICON_THEME}"
+        kwriteconfig6 --file kdeglobals --group General --key ColorScheme "${COLOR_SCHEME}"
         kwriteconfig6 --file kcminputrc --group Mouse --key cursorTheme "${CURSOR_THEME}"
         kwriteconfig6 --file kcminputrc --group Mouse --key cursorSize 32
     fi

@@ -14,7 +14,9 @@ instalación limpia con un solo comando.
 > **PlasMusic Toolbar**
 
 
-[image_prev](/assets/images/PrevTheme.png)
+<p align="center">
+  <img src="assets/images/PrevTheme.png" alt="Preview del entorno">
+</p>
 
 ---
 

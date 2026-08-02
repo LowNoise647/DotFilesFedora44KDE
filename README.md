@@ -1,5 +1,9 @@
 # Dotfiles — Fedora KDE Plasma
 
+<p align="center">
+  <img src="assets/images/PrevTheme.png" alt="Preview del entorno">
+</p>
+
 Repositorio de configuración **reproducible** del escritorio **Fedora 44 KDE
 Plasma (Plasma 6, Wayland)**. No es un backup: es una infraestructura que
 reconstruye el entorno visual y funcional del sistema original en una
@@ -12,11 +16,6 @@ instalación limpia con un solo comando.
 > **Nordic (Aurorae)** · Splash **spider-man_splash_animated** · Konsole +
 > Fastfetch + Cava + Tmux · Panel flotante con **Kurve**, **Panel Colorizer** y
 > **PlasMusic Toolbar**
-
-
-<p align="center">
-  <img src="assets/images/PrevTheme.png" alt="Preview del entorno">
-</p>
 
 ---
 

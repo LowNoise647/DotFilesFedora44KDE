@@ -1,0 +1,134 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+    "logo": {
+        "type": "file",
+        "source": "~/.config/fastfetch/logos/*.txt",
+        "color": {
+            "1": "@196",
+            "2": "@124",
+            "3": "@160",
+            "4": "@27",
+            "5": "@25"
+        },
+        "padding": {
+            "top": 1,
+            "right": 4
+        },
+        "printRemaining": true
+    },
+    "display": {
+        "separator": "  →  ",
+        "color": {
+            "keys": "#5F87D7",
+            "title": "bright_white",
+            "output": "bright_white",
+            "separator": "#E2231A"
+        },
+        "key": {
+            "width": 12
+        },
+        "temp": {
+            "color": {
+                "green": "#5F87D7",
+                "yellow": "white",
+                "red": "#E2231A"
+            }
+        },
+        "percent": {
+            "type": [
+                "num",
+                "bar",
+                "bar-monochrome"
+            ],
+            "ndigits": 0,
+            "color": {
+                "green": "#5F87D7",
+                "yellow": "white",
+                "red": "#E2231A"
+            }
+        },
+        "bar": {
+            "char": {
+                "elapsed": "█",
+                "total": "─"
+            },
+            "width": 12,
+            "color": {
+                "total": "#404040"
+            }
+        }
+    },
+    "modules": [
+        {
+            "type": "title",
+            "key": " ",
+            "color": {
+                "user": "bright_white",
+                "at": "white",
+                "host": "#E2231A"
+            }
+        },
+        {
+            "type": "separator",
+            "string": "───────",
+            "times": 1,
+            "outputColor": "bright_black"
+        },
+        { "type": "os", "key": "🐧 OS" },
+        { "type": "host", "key": "💻 Host" },
+        { "type": "kernel", "key": "⚙️ Kernel" },
+        { "type": "uptime", "key": "⏱️ Uptime" },
+        { "type": "packages", "key": "📦 Packages" },
+        { "type": "shell", "key": "🐚 Shell" },
+        { "type": "de", "key": "🎨 DE" },
+        { "type": "wm", "key": "🪟 WM" },
+        { "type": "terminal", "key": "⌨️ Terminal" },
+        {
+            "type": "cpu",
+            "key": "🧠 CPU",
+            "temp": true,
+            "showPeCoreCount": true
+        },
+        {
+            "type": "gpu",
+            "key": "🎮 GPU",
+            "temp": true
+        },
+        {
+            "type": "memory",
+            "key": "💾 Memory",
+            "percent": {
+                "type": [
+                    "num",
+                    "bar",
+                    "bar-monochrome"
+                ]
+            }
+        },
+        {
+            "type": "disk",
+            "key": "💽 Disk",
+            "showHidden": false,
+            "percent": {
+                "type": [
+                    "num",
+                    "bar",
+                    "bar-monochrome"
+                ]
+            }
+        },
+        { "type": "battery", "key": "🔋 Battery" },
+        { "type": "localip", "key": "🌐 Local IP" },
+        "break",
+        {
+            "type": "colors",
+            "key": " ",
+            "paddingLeft": 2,
+            "symbol": "block",
+            "block": {
+                "width": 3,
+                "range": [0, 15]
+            }
+        }
+    ]
+}

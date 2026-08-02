@@ -1,0 +1,6 @@
+[Daemon]
+Timeout=10
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=file:///home/lownoise/Imágenes/WallPapers/bsod.png
+PreviewImage=file:///home/lownoise/Imágenes/WallPapers/bsod.png

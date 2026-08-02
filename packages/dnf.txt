@@ -1,0 +1,16 @@
+# Paquetes dnf imprescindibles para reproducir el entorno.
+# Lo relacionado con KDE Plasma (plasma-desktop, kwin, konsole, dolphin, etc.)
+# ya viene con la edicion "Fedora KDE Plasma Desktop Edition" y no se lista aqui.
+#
+# Formato: un paquete por linea. Las lineas con '#' son comentarios.
+
+git
+bat
+cava
+fastfetch
+tmux
+vim
+xsettingsd
+curl
+wget
+unzip

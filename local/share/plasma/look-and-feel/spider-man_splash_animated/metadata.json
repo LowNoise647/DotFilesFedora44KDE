@@ -1,0 +1,22 @@
+{
+  "KPackageStructure": "Plasma/LookAndFeel/Splash",
+  "KPlugin": {
+    "Id": "spider-man_splash_animated",
+    "Name": "Spider-Splash",
+    "Description": "KDE Plasma splash screen Spider-Man classic theme. (Fork of styrup-Splash_jazz-animated By Jim Sines)",
+    "Version": "1.1",
+    "Website": "https://github.com/gitsawkit",
+    "License": "GPL-3.0-or-later (code); CC-BY-SA-4.0 (images)",
+    "EnabledByDefault": false,
+    "Authors": [
+      {
+        "Name": "SAWKIT",
+        "Email": "sawkit17@icloud.com"
+      }
+    ],
+    "Category": "Splashscreen"
+  },
+  "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Splash;Spider-Man;",
+  "X-Plasma-APIVersion": "2",
+  "X-KDE-PlasmaVersion": "plasma6"
+}

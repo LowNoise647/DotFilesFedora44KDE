@@ -1,0 +1,5 @@
+# Aplicaciones Flatpak del entorno (se instalan desde el remoto Flathub).
+# Formato: un app-id por linea.
+
+com.discordapp.Discord
+com.spotify.Client

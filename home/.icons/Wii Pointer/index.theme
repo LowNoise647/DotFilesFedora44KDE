@@ -1,0 +1,5 @@
+# https://specifications.freedesktop.org/icon-theme/latest/#id-1.5.3.2
+[Icon Theme]
+Name=Wii Pointer
+Comment=made with currust; edit index.theme to change this
+# Inherits=fallback_theme

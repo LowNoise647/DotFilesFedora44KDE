@@ -1,0 +1,14 @@
+# --- Backups creados por install.sh ---
+/.dotfiles-backup-*/
+
+# --- Editor / SO ---
+*~
+*.swp
+*.swo
+.DS_Store
+
+# --- Assets descargados en tiempo de instalacion (nunca se versionan) ---
+# Los temas de iconos Tela-circle se descargan desde GitHub durante install.sh
+# directamente a ~/.local/share/icons (fuera del repositorio). Si algun dia
+# decides vendorizarlos, no olvides eliminarlos de este archivo.
+/local/share/icons/Tela-circle-*/

@@ -18,7 +18,7 @@ set -euo pipefail
 
 # Repositorio por defecto (cambiar <USER> al publicar). Se puede sobreescribir
 # con la variable de entorno DOTFILES_REPO.
-DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/<USER>/dotfiles.git}"
+DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/LowNoise647/DotFilesFedora44KDE.git}"
 DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/dotfiles}"
 
 log()  { printf '\033[36m[bootstrap]\033[0m %s\n' "$*"; }

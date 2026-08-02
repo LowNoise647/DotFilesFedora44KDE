@@ -2,7 +2,9 @@
 # install.sh - Instalador automatico de dotfiles (Fedora KDE Plasma).
 #
 # Idempotente: puede ejecutarse multiples veces sin romper la instalacion.
-# Cada ejecucion hace un backup previo de lo que vaya a sobrescribir.
+# Cada ejecucion hace un backup previo de lo que vaya a sobrescribir y, antes
+# de desplegar, elimina lo que una ejecucion anterior hubiera dejado, para una
+# instalacion siempre limpia (sin restos de un intento fallido previo).
 #
 # Uso:
 #   ./install.sh [opciones]
@@ -82,7 +84,7 @@ main() {
 
     if [[ "${ASSUME_YES}" -eq 0 ]]; then
         echo
-        if ! ask_yes_no "Este script copiara configuraciones en tu $HOME (con backup previo). Continuar?" "y"; then
+        if ! ask_yes_no "Este script borrara (con backup previo) la configuracion que gestiona en tu $HOME y copiara la nueva. Continuar?" "y"; then
             log "Cancelado."
             exit 0
         fi
@@ -119,8 +121,9 @@ main() {
         install_tela_icons black
     fi
 
-    # Backups + despliegue
+    # Backups + despliegue (primero se purga lo gestionado anteriormente)
     init_backup
+    clean_managed_paths
     install_home_dotfiles
     install_config
     install_local_share

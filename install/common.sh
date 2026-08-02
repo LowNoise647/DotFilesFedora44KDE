@@ -98,6 +98,16 @@ backup_path() {
     fi
 }
 
+# Elimina con backup previo una ruta gestionada por el repositorio. Lo usa la
+# "instalacion limpia": antes de desplegar se purga lo que una ejecucion
+# anterior hubiera dejado, para no arrastrar restos de un intento fallido.
+purge_path() {
+    local dst="$1"
+    [[ -e "${dst}" ]] || return 0
+    backup_path "${dst}"
+    rm -rf "${dst}"
+}
+
 # ---------------------------------------------------------------------------
 # Despliegue de archivos
 # ---------------------------------------------------------------------------

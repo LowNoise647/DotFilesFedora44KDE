@@ -62,8 +62,14 @@ cd ~/dotfiles
 -h, --help                Ayuda
 ```
 
-El instalador es **idempotente**: puede ejecutarse varias veces. Antes de
-sobrescribir nada, hace un backup en `~/.dotfiles-backup-<fecha>`.
+El instalador es **idempotente** y hace una **instalación limpia**: puede
+ejecutarse varias veces, y cada vez que se lanza **elimina (con backup previo
+en `~/.dotfiles-backup-<fecha>`) todo lo que el repositorio gestiona** antes de
+volver a desplegarlo. Así, si un intento anterior falló a medias, la reejecución
+no arrastra restos ni conflictos de la instalación previa. El borrado solo toca
+las rutas gestionadas por este repositorio (configuración de `~/.config`,
+temas de `~/.local/share`, cursores, wallpapers), nunca datos de otras apps,
+otros temas de iconos o plasmoids ajenos.
 
 ### Qué ocurre al finalizar
 
@@ -171,7 +177,7 @@ git pull
 | No se aplica la configuración de pantallas | Ejecuta con `--with-display-config` **solo** si tienes los mismos monitores (eDP-1 + HDMI-A-1) |
 | Iconos genéricos tras instalar | Revisa que `~/.local/share/icons/Tela-circle-black-dark` existe; re-ejecuta `./install.sh --with-themes` |
 | El prompt se ve distinto | Verifica que `~/.bashrc` es un enlace a `~/dotfiles/home/.bashrc` |
-| Después de un cambio algo no funciona | `./install.sh` (idempotente) — tu configuración previa quedó en `~/.dotfiles-backup-*` |
+| Después de un cambio algo no funciona | `./install.sh` (idempotente, instalación limpia) — tu configuración previa quedó en `~/.dotfiles-backup-*` |
 
 ---
 

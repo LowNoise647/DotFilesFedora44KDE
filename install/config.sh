@@ -10,6 +10,91 @@
 
 set -euo pipefail
 
+# Directorio de imagenes del usuario segun ~/.config/user-dirs.dirs (con
+# respaldo a "${HOME}/Imágenes"). Misma logica para la limpieza y el despliegue.
+pictures_dir() {
+    local dir="${HOME}/Imágenes"
+    if [[ -f "${HOME}/.config/user-dirs.dirs" ]]; then
+        local pics
+        pics="$(grep '^XDG_PICTURES_DIR' "${HOME}/.config/user-dirs.dirs" | cut -d'"' -f2)"
+        [[ -n "${pics}" ]] && dir="${pics/#\$\{HOME\}/$HOME}"
+        dir="${dir//\$HOME/$HOME}"
+    fi
+    printf '%s' "${dir}"
+}
+
+# ---------------------------------------------------------------------------
+# Instalacion limpia
+# ---------------------------------------------------------------------------
+
+# Purgar lo desplegado por una ejecucion anterior (con backup en BACKUP_ROOT),
+# respetando la profundidad real de cada arbol para no borrar datos que este
+# repositorio no gestiona (p. ej. otros temas de iconos o plasmoids ajenos).
+clean_managed_paths() {
+    step "Instalacion limpia (se elimina lo desplegado anteriormente, con backup)"
+
+    local pics="$(pictures_dir)"
+
+    # Dotfiles de $HOME (enlaces simbolicos) y cursores de home/.icons
+    local dotfile d
+    for dotfile in .bashrc .bash_profile .profile .bash_logout .gtkrc-2.0; do
+        [[ -f "${REPO_DIR}/home/${dotfile}" ]] && purge_path "${HOME}/${dotfile}"
+    done
+    for d in "${REPO_DIR}"/home/.icons/*; do
+        [[ -d "${d}" ]] && purge_path "${HOME}/.icons/$(basename "${d}")"
+    done
+
+    # ~/.config: misma lista que gestiona install_config (kwinoutputconfig.json
+    # es condicional y se aplica aparte en install/kde.sh).
+    local f
+    for f in "${REPO_DIR}"/config/*; do
+        [[ -e "${f}" ]] || continue
+        [[ "$(basename "${f}")" == "kwinoutputconfig.json" ]] && continue
+        purge_path "${HOME}/.config/$(basename "${f}")"
+    done
+
+    # ~/.local/share: solo las unidades que aporta el repositorio, nunca los
+    # contenedores enteros (plasma/, icons/, color-schemes/, ...).
+    local l base child sub area
+    for l in "${REPO_DIR}"/local/share/*; do
+        [[ -e "${l}" ]] || continue
+        base="$(basename "${l}")"
+        case "${base}" in
+            plasma)
+                for area in desktoptheme look-and-feel plasmoids; do
+                    for sub in "${REPO_DIR}/local/share/plasma/${area}"/*; do
+                        [[ -e "${sub}" ]] && purge_path "${HOME}/.local/share/plasma/${area}/$(basename "${sub}")"
+                    done
+                done
+                ;;
+            kwin)
+                for sub in "${REPO_DIR}"/local/share/kwin/effects/*; do
+                    [[ -e "${sub}" ]] && purge_path "${HOME}/.local/share/kwin/effects/$(basename "${sub}")"
+                done
+                ;;
+            aurorae)
+                for sub in "${REPO_DIR}"/local/share/aurorae/themes/*; do
+                    [[ -e "${sub}" ]] && purge_path "${HOME}/.local/share/aurorae/themes/$(basename "${sub}")"
+                done
+                ;;
+            *)
+                for child in "${l}"/*; do
+                    [[ -e "${child}" ]] && purge_path "${HOME}/.local/share/${base}/$(basename "${child}")"
+                done
+                ;;
+        esac
+    done
+
+    # Wallpapers e iconos del usuario gestionados por assets/
+    local p
+    for p in "${REPO_DIR}"/assets/wallpapers/*; do
+        [[ -f "${p}" ]] && purge_path "${pics}/WallPapers/$(basename "${p}")"
+    done
+    for p in "${REPO_DIR}"/assets/icons/*; do
+        [[ -f "${p}" ]] && purge_path "${pics}/Icons/$(basename "${p}")"
+    done
+}
+
 install_home_dotfiles() {
     step "Dotfiles de $HOME"
 
@@ -53,17 +138,8 @@ install_local_share() {
 install_wallpapers() {
     step "Wallpapers y recursos graficos"
 
-    local xdg_pictures="${HOME}/Imágenes"
-    if [[ -f "${HOME}/.config/user-dirs.dirs" ]]; then
-        # shellcheck disable=SC1091
-        local pics
-        pics="$(grep '^XDG_PICTURES_DIR' "${HOME}/.config/user-dirs.dirs" | cut -d'"' -f2)"
-        [[ -n "${pics}" ]] && xdg_pictures="${pics/#\$\{HOME\}/$HOME}"
-        xdg_pictures="${xdg_pictures//\$HOME/$HOME}"
-    fi
-
-    local walls_dir="${xdg_pictures}/WallPapers"
-    local icons_dir="${xdg_pictures}/Icons"
+    local walls_dir="$(pictures_dir)/WallPapers"
+    local icons_dir="$(pictures_dir)/Icons"
     ensure_dir "${walls_dir}" "${icons_dir}"
 
     # Wallpapers propios del usuario

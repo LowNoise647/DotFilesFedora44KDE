@@ -6,17 +6,17 @@
 #
 # Uso:
 #   # 1) Descargar y ejecutar sin clonar:
-#   bash <(curl -fsSL https://raw.githubusercontent.com/<USER>/dotfiles/main/bootstrap.sh)
+#   bash <(curl -fsSL https://raw.githubusercontent.com/LowNoise647/DotFilesFedora44KDE/main/bootstrap.sh)
 #
 #   # 2) O bien, si ya clonaste el repo:
 #   ./bootstrap.sh
 #
 #   # 3) Con un usuario/organizacion de GitHub distinto:
-#   DOTFILES_REPO="git@github.com:<TU_USUARIO>/dotfiles.git" ./bootstrap.sh
+#   DOTFILES_REPO="git@github.com:OTRO_USUARIO/dotfiles.git" ./bootstrap.sh
 
 set -euo pipefail
 
-# Repositorio por defecto (cambiar <USER> al publicar). Se puede sobreescribir
+# Repositorio por defecto. Se puede sobreescribir
 # con la variable de entorno DOTFILES_REPO.
 DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/LowNoise647/DotFilesFedora44KDE.git}"
 DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/dotfiles}"

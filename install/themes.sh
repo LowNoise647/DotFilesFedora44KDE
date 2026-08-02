@@ -35,7 +35,7 @@ install_tela_icons() {
     log "Instalando variantes Tela-circle: ${variant} (light y dark)"
     (
         cd "${tmp}/tela"
-        bash ./install.sh -n Tela-circle "${variant}" light dark
+        bash ./install.sh -c -n Tela-circle "${variant}"
     )
 
     # Actualizar cache de iconos de las variantes instaladas

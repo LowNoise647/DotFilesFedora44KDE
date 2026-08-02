@@ -35,7 +35,7 @@ vendorizarlos manualmente:
 
 ```bash
 git clone --depth 1 https://github.com/vinceliuice/Tela-circle-icon-theme.git /tmp/tela
-cd /tmp/tela && bash ./install.sh -n Tela-circle black light dark
+cd /tmp/tela && bash ./install.sh -c -n Tela-circle black
 mkdir -p ~/dotfiles/local/share/icons
 cp -a ~/.local/share/icons/Tela-circle-* ~/dotfiles/local/share/icons/
 # y borra la linea correspondiente de .gitignore

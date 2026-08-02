@@ -13,6 +13,9 @@ instalación limpia con un solo comando.
 > Fastfetch + Cava + Tmux · Panel flotante con **Kurve**, **Panel Colorizer** y
 > **PlasMusic Toolbar**
 
+
+[image_prev](/assets/images/PrevTheme.png)
+
 ---
 
 ## Requisitos

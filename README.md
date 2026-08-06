@@ -66,6 +66,47 @@ cd ~/dotfiles
 -h, --help                Ayuda
 ```
 
+### Instalador TUI (Rust)
+
+Además del instalador clásico por terminal, el repositorio incluye una **TUI
+interactiva en Rust** (`tui/`) que envuelve a `install.sh` con animaciones,
+barra de progreso y seguimiento de pasos en vivo.
+
+```bash
+cd ~/dotfiles/tui
+cargo run --release
+```
+
+Opciones que acepta (iguales que `install.sh`, para preconfigurar la TUI):
+
+```text
+--with-packages / --no-packages     paquetes dnf + Flatpak
+--with-themes / --no-themes         iconos Tela (~150 MB)
+--with-display-config               configuración de pantallas (hardware)
+--no-restart                        no reiniciar Plasma al terminar
+--animation=0..4                    animación inicial
+```
+
+La TUI ofrece:
+
+1. **Bienvenida**: menú *Instalar / Salir* sobre una animación de Spider-Man.
+2. **Configuración**: lista de **5 animaciones** (Spider-Man, Matrix,
+   Synthwave, Neón Cibernético y Aurora Boreal) que se cambian con las teclas
+   `← →`, con vista previa en vivo, más opciones activables (`Espacio`):
+   paquetes, iconos Tela, configuración de pantallas y reinicio de Plasma.
+3. **Instalación**: la animación elegida sigue corriendo (cambiable con
+   `← →`), con **barra de progreso**, el **paso concreto** que se está
+   ejecutando (sistema, wallpapers, configuraciones, paneles…) y la salida
+   en vivo de `install.sh`.
+4. **Autenticación sudo**: si se van a instalar paquetes, pide la contraseña
+   una sola vez (enmascarada) antes de lanzar la instalación.
+5. **Resumen final**: confirmación con los siguientes pasos, o el error con
+   opción de reintentar. La instalación es cancelable en cualquier momento
+   con `q`/`Esc`.
+
+> `DOTFILES_DIR` permite apuntar al repositorio si la TUI no está dentro de
+> él: `DOTFILES_DIR=~/dotfiles cargo run --release`.
+
 El instalador es **idempotente** y hace una **instalación limpia**: puede
 ejecutarse varias veces, y cada vez que se lanza **elimina (con backup previo
 en `~/.dotfiles-backup-<fecha>`) todo lo que el repositorio gestiona** antes de
@@ -104,6 +145,7 @@ dotfiles/
 │   ├── themes.sh         # Descarga de temas de terceros (Tela)
 │   ├── config.sh         # Despliegue de archivos y caches
 │   └── kde.sh            # Aplicacion via herramientas oficiales de Plasma
+├── tui/                  # Instalador TUI en Rust (animaciones + progreso)
 ├── packages/
 │   ├── dnf.txt           # Paquetes dnf imprescindibles
 │   └── flatpak.txt       # Aplicaciones Flatpak (Discord, Spotify)

@@ -12,3 +12,6 @@
 # directamente a ~/.local/share/icons (fuera del repositorio). Si algun dia
 # decides vendorizarlos, no olvides eliminarlos de este archivo.
 /local/share/icons/Tela-circle-*/
+
+# --- TUI del instalador (Rust) ---
+/tui/target/

@@ -73,3 +73,6 @@ set_prompt() {
 }
 
 PROMPT_COMMAND=set_prompt
+. "$HOME/.cargo/env"
+export PATH="$HOME/.local/bin:$PATH"
+
